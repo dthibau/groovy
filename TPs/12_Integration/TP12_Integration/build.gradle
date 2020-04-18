@@ -1,0 +1,31 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+version = '1.0'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:3.0.3'
+    compile 'log4j:log4j:1.2.17'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
+     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+    // testCompile("org.junit.jupiter:junit-jupiter-api:5.+") 
+    // testCompile group: 'junit', name: 'junit', version: '5.+'
+}
+
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Fat Jar File',  
+        	'Implementation-Version': version,
+        	'Main-Class': 'org.formation.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
