@@ -4,12 +4,22 @@ import java.time.LocalDate
 
 import org.formation.model.Index
 
+import groovy.transform.Memoized
+import groovy.transform.builder.Builder
+import groovy.util.logging.Log
+
+@Builder(excludes='profilers')
+@Log
 class Indexer {
 	String tokenizer
 
 	List<Closure> filters
+	
+	List profilers = []
 
+	@Memoized
 	def buildIndex(Index index) {
+		log.info('Building index')
 		index.map = _index(index.source)
 		index.indexed = LocalDate.now()
 	}
@@ -21,11 +31,14 @@ class Indexer {
 		//		words.each fillMap
 
 		for (closure in filters) {
-			println closure.owner
-			println closure.delegate
+			log.fine("Owner is ${closure.owner}")
+			log.fine("Delegate is ${closure.delegate}")
+			log.fine("Statégie de résolution ${closure.resolveStrategy}")
+			
+			closure.delegate = this
 			
 			words = closure.call(words);
-			println 'Words after filter applied : ' + words
+			log.fine(" Words after filter applied : $words")
 		}
 
 		
