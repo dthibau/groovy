@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<feature id="org.codehaus.groovy.eclipse.feature"
+      label="%featureName"
+      version="3.8.0.v202005092358-e1912"
+      provider-name="%providerName"
+      plugin="org.codehaus.groovy.eclipse">
+
+   <description url="%descriptionURL">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes id="org.codehaus.groovy.compilerless.feature" version="3.8.0.v202005092358-e1912"/>
+
+   <includes id="org.codehaus.groovy24.feature" version="3.8.0.v202005092358-e1912" optional="true"/>
+
+</feature>

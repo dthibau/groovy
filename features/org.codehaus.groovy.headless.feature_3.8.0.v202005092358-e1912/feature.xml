@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<feature id="org.codehaus.groovy.headless.feature"
+      label="%featureName"
+      version="3.8.0.v202005092358-e1912"
+      provider-name="%providerName">
+
+   <description url="%descriptionURL">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes id="org.codehaus.groovy.jdt.patch" version="3.8.0.v202005092358-e1912"/>
+
+   <plugin
+         id="org.codehaus.groovy.eclipse.ant"
+         download-size="11"
+         install-size="14"
+         version="3.8.0.v202005092358-e1912"
+         unpack="false"
+   />
+
+   <plugin
+         id="org.codehaus.groovy.eclipse.compilerResolver"
+         download-size="20"
+         install-size="36"
+         version="3.8.0.v202005092358-e1912"
+         unpack="false"
+   />
+
+   <plugin
+         id="org.codehaus.groovy.eclipse.core"
+         download-size="85"
+         install-size="170"
+         version="3.8.0.v202005092358-e1912"
+         unpack="false"
+   />
+
+   <plugin
+         id="org.eclipse.jdt.groovy.core"
+         download-size="465"
+         install-size="1021"
+         version="3.8.0.v202005092358-e1912"
+         unpack="false"
+   />
+
+</feature>

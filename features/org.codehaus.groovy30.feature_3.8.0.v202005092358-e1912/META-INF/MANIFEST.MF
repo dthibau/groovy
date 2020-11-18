@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 1.8
+Created-By: Maven Archiver 3.5.0
+
+Name: epl-v10.html
+SHA-256-Digest: WzEvwomjsAgeKLFwf4jlch3FlnsqanEGxantYw2Udec=
+
+Name: feature.xml
+SHA-256-Digest: payC4CxWGltCBnhmjx25FeTAtT99RdeOic7GP6g6ei4=
+
+Name: feature.properties
+SHA-256-Digest: 2rN+VhYOvQxc5pkgoAbKbktBBWRLuQGnA4MtCk+Jhyc=
+
+Name: license.html
+SHA-256-Digest: ns34YVzFuwjqPF+8bk7+AYq85Tw6xcLeB3zk1OGYnbo=
+
