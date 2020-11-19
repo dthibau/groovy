@@ -2,10 +2,7 @@ package org.formation
 
 import org.formation.model.Index
 import org.formation.model.Persistent
-import org.formation.model.PersistentIndex
-import org.formation.service.FlexibleIndexer
 import org.formation.service.Indexer
-
 
 def text='Pour le deuxième hiver consécutif, Delhi étouffe sous la pollution. Dans la nuit du 6 au 7 novembre, alors que les températures chutaient à \
 l’approche de l’hiver, quand le vent s’est arrêté de souffler, des milliards de milliards de particules fines ont été prises au piège dans l’atmosphère \
@@ -18,31 +15,20 @@ jours sont dus à des processus de réaction chimique similaires. Le responsable
 le dioxyde d’azote issu de la combustion du charbon. Mélangé au dioxyde de soufre, issu de la \
 même combustion, il crée un acide sulfurique et un brouillard épais'
 
-indexer = new Indexer([tokenizer:'b',minimalSize:10])
-index = new Index(text);
+// Instancier un index
+
+def index = new Index(source:text)
+
+println index
+
+// Instancier un indexeur
+def indexer = new Indexer(tokenizer:/\b/, minimalSize:2)
 
 index = indexer.buildIndex(index)
 
 println index
 
-println '***** Trying to save a simple index ******'
-// Method not found exception
-try {
-  index.save()
-} catch (MissingMethodException e) {
-	println 'No method save()'
-}
+def persistentIndex = new Index(source:index.source, keywords:index.keywords, createdDate: index.createdDate, indexedDate: index.indexedDate) as Persistent
 
-println '***** Trying to save a persistent index ******'
-// Utiliser un trait de façon statique
-index = new PersistentIndex(text)
-index = indexer.buildIndex(index)
-index.save()
-
-println '***** Trying to save a dynamic persistent index ******'
-// Ajouter un trait dynamiquement
-index = new Index(text) as Persistent
-indexer = new FlexibleIndexer([tokenizer:'b',minimalSize:10])
-index = indexer.doIndex(index)
-index.save()
+persistentIndex.save()
 

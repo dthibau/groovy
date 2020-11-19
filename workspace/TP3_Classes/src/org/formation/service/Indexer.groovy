@@ -3,7 +3,7 @@ package org.formation.service
 import org.formation.model.Index
 
 class Indexer {
-	def tokenizer
+	String tokenizer
 	int minimalSize =2
 
 	
@@ -22,7 +22,7 @@ class Indexer {
 	}
 
 	private Map _index(String texte) {
-		def words = texte.split(tokenizer)
+		def words = texte.split(/\${tokenizer}/)
 		def map = [:]
 
 		words.findAll({it.size()>minimalSize}).each({
