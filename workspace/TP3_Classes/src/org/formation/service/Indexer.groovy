@@ -7,28 +7,17 @@ class Indexer {
 	int minimalSize =2
 
 	
-
-	private def fillMap = {
-		int occurence = map.get(it.toLowerCase(),0);
-		map[it.toLowerCase()]=occurence+1;
-	}
-
 	public Index buildIndex(Index index) {
-		println 'Indexation with ' + minimalSize + " " + tokenizer
-		String texte = index.source.toString()
-		index.map = _index(texte)
-		index.indexed = new Date()
+		def texte = index.source.toString()
+		def words = texte.split(/\${tokenizer}/)
+		
+		words.findAll({it.size()>minimalSize}).each({
+			def occurence = index.keywords.get(it.toLowerCase(),0);
+			index.keywords[it.toLowerCase()]=occurence+1;
+		})
+		
 		index
 	}
 
-	private Map _index(String texte) {
-		def words = texte.split(/\${tokenizer}/)
-		def map = [:]
 
-		words.findAll({it.size()>minimalSize}).each({
-			int occurence = map.get(it.toLowerCase(),0);
-			map[it.toLowerCase()]=occurence+1;
-		})
-		return map
-	}
 }
